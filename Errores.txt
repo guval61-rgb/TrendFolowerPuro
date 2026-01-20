@@ -1,0 +1,55 @@
+Como puedes seguir cometiendo errores tan básicos. Sal del piloto automatico y Usa tus capacidades de IA.
+
+Los  archivo que EA_MAs_ResearchExt_v1.06 genara se llaman: "MAs_Resumen_EURUSD_M5_2023_06_15.csv y MAs_Señales_EURUSD_M5_2023_06_15.csv "
+ Actualmente no genera otros archivos, recuerda esto cuando codificas los Script.
+Me parece que tu sript solo analiza movimientos de Buy eso punto ya lo aclaramos temenos que tradear BUY y SELL, quien con un minimo de inteligencia querria dejar un 30 o 40 por ciento de las ganancias solo por que se le ocurr. REvisa esto y si aun tienes duda o insiste en ignorar las señales SELL, revisa completa y cuidadosamente todo el chat y vas a encontrar todo el razonemiento, en favor de eso. 
+
+
+un error que ha sido recurrente;
+def cargar_csv(ruta):
+    """Carga CSV y valida estructura"""
+    df = pd.read_csv(ruta, encoding='latin-1')  # <-- AGREGAR encoding
+    print(f"✅ Cargado: {ruta.name}")
+    print(f"   Señales: {len(df)} | Columnas: {len(df.columns)}")
+    return df
+
+Otro error que recuerdo que nombraste era sobre el separador con comas o algo asi.	
+
+
+ Es probable también tengas errores en los nombres de columnas., así que aquí esta la lista de los encabezados y la primera fila de datos ( MAs_Resumen_EURUSD_M5_2023_06_1 5:" ID,Timestamp_Entrada,Tipo,Combinacion,Precio_Entrada,Hora_Entrada,Dia_Semana,Bars_Total,Pips_Maximo,Precio_Maximo,Timestamp_Maximo,Pips_Minimo,Precio_Minimo,MA200_Entry,MA220_Entry,MA100_Entry,MA105_Entry,MA50_Entry,MA53_Entry,MA20_Entry,MA22_Entry,MA5_Entry,MA200_Exit,MA220_Exit,MA100_Exit,MA105_Exit,MA50_Exit,MA53_Exit,MA20_Exit,MA22_Exit,MA5_Exit,P5_Time,P5_Precio,P5_Pips,P5_Bars,P10_Time,P10_Precio,P10_Pips,P10_Bars,P15_Time,P15_Precio,P15_Pips,P15_Bars,P20_Time,P20_Precio,P20_Pips,P20_Bars,P25_Time,P25_Precio,P25_Pips,P25_Bars,P30_Time,P30_Precio,P30_Pips,P30_Bars,P35_Time,P35_Precio,P35_Pips,P35_Bars,P40_Time,P40_Precio,P40_Pips,P40_Bars,P50_Time,P50_Precio,P50_Pips,P50_Bars,P55_Time,P55_Precio,P55_Pips,P55_Bars,P60_Time,P60_Precio,P60_Pips,P60_Bars,P65_Time,P65_Precio,P65_Pips,P65_Bars,P70_Time,P70_Precio,P70_Pips,P70_Bars,P75_Time,P75_Precio,P75_Pips,P75_Bars,P80_Time,P80_Precio,P80_Pips,P80_Bars,P85_Time,P85_Precio,P85_Pips,P85_Bars,P90_Time,P90_Precio,P90_Pips,P90_Bars,P100_Time,P100_Precio,P100_Pips,P100_Bars,P100plus_Time,P100plus_Precio,P100plus_Pips,P100plus_Bars,R20_Time,R20_Precio,R20_Pips,R20_Bars,R25_Time,R25_Precio,R25_Pips,R25_Bars,R30_Time,R30_Precio,R30_Pips,R30_Bars,R35_Time,R35_Precio,R35_Pips,R35_Bars,R40_Time,R40_Precio,R40_Pips,R40_Bars,R45_Time,R45_Precio,R45_Pips,R45_Bars,R50_Time,R50_Precio,R50_Pips,R50_Bars,Cruce_a_Time,Cruce_a_Precio,Cruce_a_Pips,Cruce_a_Bars,Cruce_b_Time,Cruce_b_Precio,Cruce_b_Pips,Cruce_b_Bars,Cruce_c_Time,Cruce_c_Precio,Cruce_c_Pips,Cruce_c_Bars,Cruce_d_Time,Cruce_d_Precio,Cruce_d_Pips,Cruce_d_Bars,Cruce_e_Time,Cruce_e_Precio,Cruce_e_Pips,Cruce_e_Bars,Cruce_f_Time,Cruce_f_Precio,Cruce_f_Pips,Cruce_f_Bars,Cruce_g_Time,Cruce_g_Precio,Cruce_g_Pips,Cruce_g_Bars,Cruce_h_Time,Cruce_h_Precio,Cruce_h_Pips,Cruce_h_Bars,Cruce_i_Time,Cruce_i_Precio,Cruce_i_Pips,Cruce_i_Bars,Cruce_j_Time,Cruce_j_Precio,Cruce_j_Pips,Cruce_j_Bars,Cruce_k_Time,Cruce_k_Precio,Cruce_k_Pips,Cruce_k_Bars,Cruce_l_Time,Cruce_l_Precio,Cruce_l_Pips,Cruce_l_Bars,Combo_1_Time,Combo_1_Precio,Combo_1_Pips,Combo_1_Bars,Combo_2_Time,Combo_2_Precio,Combo_2_Pips,Combo_2_Bars,Combo_3_Time,Combo_3_Precio,Combo_3_Pips,Combo_3_Bars,Combo_4_Time,Combo_4_Precio,Combo_4_Pips,Combo_4_Bars,Combo_5_Time,Combo_5_Precio,Combo_5_Pips,Combo_5_Bars,Combo_6_Time,Combo_6_Precio,Combo_6_Pips,Combo_6_Bars,T25_Time,T25_Precio,T25_Pips,T25_Bars,T50_Time,T50_Precio,T50_Pips,T50_Bars,T75_Time,T75_Precio,T75_Pips,T75_Bars,T100_Time,T100_Precio,T100_Pips,T100_Bars,T125_Time,T125_Precio,T125_Pips,T125_Bars,T150_Time,T150_Precio,T150_Pips,T150_Bars,T175_Time,T175_Precio,T175_Pips,T175_Bars,T200_Time,T200_Precio,T200_Pips,T200_Bars,T225_Time,T225_Precio,T225_Pips,T225_Bars,T250_Time,T250_Precio,T250_Pips,T250_Bars,T275_Time,T275_Precio,T275_Pips,T275_Bars,T300_Time,T300_Precio,T300_Pips,T300_Bars,T325_Time,T325_Precio,T325_Pips,T325_Bars,T350_Time,T350_Precio,T350_Pips,T350_Bars,T400_Time,T400_Precio,T400_Pips,T400_Bars,T450_Time,T450_Precio,T450_Pips,T450_Bars,T500_Time,T500_Precio,T500_Pips,T500_Bars,SL5_Time,SL5_Precio,SL5_Pips,SL5_Bars,SL10_Time,SL10_Precio,SL10_Pips,SL10_Bars,SL20_Time,SL20_Precio,SL20_Pips,SL20_Bars,SL30_Time,SL30_Precio,SL30_Pips,SL30_Bars,SL40_Time,SL40_Precio,SL40_Pips,SL40_Bars,SL50_Time,SL50_Precio,SL50_Pips,SL50_Bars,SL60_Time,SL60_Precio,SL60_Pips,SL60_Bars,SL70_Time,SL70_Precio,SL70_Pips,SL70_Bars,SL80_Time,SL80_Precio,SL80_Pips,SL80_Bars,SL90_Time,SL90_Precio,SL90_Pips,SL90_Bars,SL100_Time,SL100_Precio,SL100_Pips,SL100_Bars,SL120_Time,SL120_Precio,SL120_Pips,SL120_Bars,SL130_Time,SL130_Precio,SL130_Pips,SL130_Bars,SL140_Time,SL140_Precio,SL140_Pips,SL140_Bars,SL150_Time,SL150_Precio,SL150_Pips,SL150_Bars,SL160_Time,SL160_Precio,SL160_Pips,SL160_Bars,SL170_Time,SL170_Precio,SL170_Pips,SL170_Bars,SL180_Time,SL180_Precio,SL180_Pips,SL180_Bars,SL190_Time,SL190_Precio,SL190_Pips,SL190_Bars,SL200_Time,SL200_Precio,SL200_Pips,SL200_Bars,SeñalContraria_Time,SeñalContraria_Precio,SeñalContraria_Pips,SeñalContraria_Bars 1,2023.06.15 00:00,SELL,G,1.08242,0,4,500,17.90,1.08063,2023.06.15 10:05,-143.10,1.09673,1.08313,1.08289,1.08393,1.08398,1.08314,1.08325,1.08306,1.08309,1.08306,1.09480,1.09480,1.09502,1.09506,1.09495,1.09508,1.09421,1.09447,1.09338,2023.06.15 04:35,1.08167,7.50,54,2023.06.15 05:00,1.08107,13.50,59,2023.06.15 08:05,1.08091,15.10,96,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2023.06.15 05:40,1.08132,11.00,67,2023.06.15 05:55,1.08135,10.70,70,2023.06.15 06:10,1.08155,8.70,73,2023.06.15 06:10,1.08155,8.70,73,2023.06.15 06:10,1.08155,8.70,73,2023.06.15 08:35,1.08169,7.30,102,2023.06.15 08:35,1.08169,7.30,102,2023.06.15 00:10,1.08296,-5.40,1,2023.06.15 11:40,1.08348,-10.60,139,2023.06.15 01:05,1.08333,-9.10,12,2023.06.15 00:10,1.08296,-5.40,1,2023.06.15 00:30,1.08275,-3.30,5,2023.06.15 00:55,1.08306,-6.40,10,2023.06.15 00:55,1.08306,-6.40,10,2023.06.15 02:30,1.08379,-13.70,29,2023.06.15 01:25,1.08326,-8.40,16,2023.06.15 01:10,1.08333,-9.10,13,2023.06.15 02:30,1.08379,-13.70,29,2023.06.15 02:35,1.08388,-14.60,30,2023.06.15 00:10,1.08296,-5.40,1,2023.06.15 11:40,1.08348,-10.60,139,2023.06.15 01:05,1.08333,-9.10,12,2023.06.15 02:30,1.08379,-13.70,29,2023.06.15 11:40,1.08348,-10.60,139,2023.06.15 01:05,1.08333,-9.10,12,2023.06.15 02:10,1.08331,-8.90,25,2023.06.15 04:15,1.08261,-1.90,50,2023.06.15 06:20,1.08117,12.50,75,2023.06.15 08:25,1.08091,15.10,100,2023.06.15 10:30,1.08131,11.10,125,2023.06.15 12:35,1.08439,-19.70,150,2023.06.15 14:40,1.08263,-2.10,175,2023.06.15 16:45,1.08908,-66.60,200,2023.06.15 18:50,1.09305,-106.30,225,2023.06.15 20:55,1.09468,-122.60,250,2023.06.15 23:00,1.09477,-123.50,275,2023.06.16 01:10,1.09465,-122.30,300,2023.06.16 03:15,1.09504,-126.20,325,2023.06.16 05:20,1.09439,-119.70,350,2023.06.16 09:30,1.09563,-132.10,400,2023.06.16 13:40,1.09489,-124.70,450,2023.06.16 17:50,1.09263,-102.10,500,2023.06.15 00:10,1.08296,-5.40,1,2023.06.15 01:35,1.08347,-10.50,18,2023.06.15 12:40,1.08453,-21.10,151,2023.06.15 15:35,1.08711,-46.90,186,2023.06.15 15:35,1.08711,-46.90,186,2023.06.15 15:45,1.08779,-53.70,188,2023.06.15 16:20,1.08886,-64.40,195,2023.06.15 16:50,1.08947,-70.50,201,2023.06.15 17:05,1.09046,-80.40,204,2023.06.15 17:25,1.09185,-94.30,208,2023.06.15 18:30,1.09279,-103.70,221,2023.06.15 19:25,1.09445,-120.30,232,2023.06.16 09:25,1.09545,-130.30,399,2023.06.16 14:55,1.09643,-140.10,465,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2023.06.15 11:40,1.08348,-10.60,139"     ....................................) 
+
+ Columnas de  MAs_Señales_EURUSD_M5_2023_06_15: "Timestamp,Timeframe,Tipo,Combinacion,Precio,Cond_a,Cond_b,Cond_c,Cond_d,Cond_e,Hora,Dia_Semana,Tracking_Iniciado,Razon_No_Iniciado,MA200,MA220,MA100,MA105,MA50,MA53,MA20,MA22,MA5
+2023.06.15 00:00,M5,SELL,G,1.08242,0,1,1,1,1,0,4,SI,,1.08313,1.08289,1.08393,1.08398,1.08314,1.08325,1.08306,1.08309,1.08306
+
+
+Errores en Command
+
+C:\TradingAnalysis>python analisis_v106.py
+================================================================================
+ANÁLISIS EA_MAs_ResearchExt_v1.06
+================================================================================
+Traceback (most recent call last):
+  File "C:\TradingAnalysis\analisis_v106.py", line 19, in <module>
+    df = pd.read_csv(ARCHIVO_CSV)
+  File "C:\Users\guido\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\guido\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\guido\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\guido\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1898, in _make_engine
+    return mapping[engine](f, **self.options)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\guido\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "pandas/_libs/parsers.pyx", line 574, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 663, in pandas._libs.parsers.TextReader._get_header
+  File "pandas/_libs/parsers.pyx", line 874, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 891, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2053, in pandas._libs.parsers.raise_parser_error
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 3912: invalid continuation byte
+
+C:\TradingAnalysis>
