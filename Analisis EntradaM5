@@ -1,0 +1,205 @@
+================================================================================
+ANÁLISIS CONDICIONES DE ENTRADA TF M5
+================================================================================
+
+Leyendo archivo: MAs_Resumen_EURUSD_M5_2023_06_15.csv
+✓ Archivo leído con encoding Latin-1
+Total trades en dataset: 7903
+
+================================================================================
+ANÁLISIS 1: FRECUENCIA DE SEÑALES POR COMBINACIÓN
+================================================================================
+
+FRECUENCIA DE SEÑALES:
+--------------------------------------------------------------------------------
+Comb      Total      BUY     SELL Balance
+--------------------------------------------------------------------------------
+A           566      284      282 EQUILIBRADO
+B           574      290      284 EQUILIBRADO
+C           572      288      284 EQUILIBRADO
+D           578      289      289 EQUILIBRADO
+E           596      299      297 EQUILIBRADO
+F           565      284      281 EQUILIBRADO
+G           635      320      315 EQUILIBRADO
+H           587      295      292 EQUILIBRADO
+I           583      295      288 EQUILIBRADO
+J           693      347      346 EQUILIBRADO
+K           674      338      336 EQUILIBRADO
+L           635      320      315 EQUILIBRADO
+M           645      324      321 EQUILIBRADO
+
+================================================================================
+ANÁLISIS 2: RENDIMIENTO CON SALIDA P40
+================================================================================
+
+PIPS TOTALES (ordenado de mayor a menor):
+----------------------------------------------------------------------------------------------------
+Comb     Total Pips     BUY Pips    SELL Pips  % Alcance   Pips/Trade
+----------------------------------------------------------------------------------------------------
+J           13440.1       6923.0       6517.1       44.2        43.92
+K           13145.8       6604.6       6541.2       44.8        43.53
+G           12858.1       6360.3       6497.8       46.1        43.88
+L           12650.7       6322.7       6328.0       45.4        43.93
+M           12361.5       6234.6       6126.9       43.6        43.99
+E           12191.8       6421.8       5770.0       46.8        43.70
+I           11881.9       6217.3       5664.6       46.3        44.01
+H           11748.3       6169.4       5578.9       45.7        43.84
+C           11616.7       6061.3       5555.4       46.0        44.17
+D           11588.2       6071.7       5516.5       45.7        43.89
+B           11497.9       5991.1       5506.8       45.3        44.22
+A           11302.9       5934.8       5368.1       45.2        44.15
+F           11107.7       5786.1       5321.6       44.6        44.08
+
+================================================================================
+ANÁLISIS 3: % ALCANCE DE P40
+================================================================================
+
+% de trades que alcanzan P40 (ordenado de mayor a menor):
+--------------------------------------------------------------------------------
+Comb      Total %      BUY %     SELL %    Alcanza
+--------------------------------------------------------------------------------
+E            46.8       48.8       44.8        279
+I            46.3       48.1       44.4        270
+G            46.1       45.3       47.0        293
+C            46.0       47.9       44.0        263
+D            45.7       47.8       43.6        264
+H            45.7       47.8       43.5        268
+L            45.4       45.0       45.7        288
+B            45.3       46.9       43.7        260
+A            45.2       47.5       42.9        256
+K            44.8       45.0       44.6        302
+F            44.6       46.5       42.7        252
+J            44.2       45.8       42.5        306
+M            43.6       43.8       43.3        281
+
+================================================================================
+ANÁLISIS 4: PIPS PROMEDIO POR TRADE
+================================================================================
+
+Pips promedio con P40 (ordenado de mayor a menor):
+--------------------------------------------------------------------------------
+Comb        Total        BUY       SELL   Diferencia
+--------------------------------------------------------------------------------
+B           44.22      44.05      44.41        -0.36
+C           44.17      43.92      44.44        -0.52
+A           44.15      43.96      44.36        -0.40
+F           44.08      43.83      44.35        -0.51
+I           44.01      43.78      44.25        -0.47
+M           43.99      43.91      44.08        -0.17
+L           43.93      43.91      43.94        -0.04
+J           43.92      43.54      44.33        -0.79
+D           43.89      44.00      43.78         0.22
+G           43.88      43.86      43.90        -0.04
+H           43.84      43.75      43.93        -0.17
+E           43.70      43.98      43.38         0.60
+K           43.53      43.45      43.61        -0.16
+
+================================================================================
+ANÁLISIS 5: POTENCIAL DE MOVIMIENTO
+================================================================================
+
+Pips máximo alcanzado (potencial de cada señal):
+--------------------------------------------------------------------------------
+Comb          Media      Mediana     Drawdown
+--------------------------------------------------------------------------------
+G             46.60        35.00       -45.30
+L             46.22        34.40       -45.64
+J             45.74        33.60       -44.94
+D             45.37        35.70       -45.36
+C             45.36        34.45       -45.39
+H             45.22        34.90       -45.59
+E             45.19        36.05       -46.46
+A             45.14        34.00       -45.41
+I             45.10        34.90       -45.01
+B             45.01        34.65       -45.31
+F             44.95        33.70       -45.62
+K             44.79        32.90       -46.29
+M             44.73        32.30       -45.91
+
+================================================================================
+ANÁLISIS 6: COMPOSICIÓN DE CONDICIONES
+================================================================================
+
+Donde:
+  a = LWMA200 > LWMA220
+  b = LWMA100 > LWMA105
+  c = LWMA50 > LWMA53
+  d = LWMA20 > LWMA22
+  e = Precio > SMA5
+
+COMPOSICIÓN:
+  A: a+b+c+d (4 condiciones - MAs lentas y medias)
+  B: a+b+c (3 condiciones - MAs lentas)
+  C: a+b+d (3 condiciones - MAs lentas sin c)
+  D: a+c+d (3 condiciones - MAs lentas sin b)
+  E: a+d+e (3 condiciones - MAs lentas + precio)
+  F: a+b+c+d+e (5 condiciones - TODAS)
+  G: b+c+d (3 condiciones - MAs medias)
+  H: a+c+e (3 condiciones - MAs lentas extremas)
+  I: a+b (2 condiciones - Solo MAs lentas)
+  J: d+e (2 condiciones - MAs rápidas)
+  K: c+d+e (3 condiciones - MAs medias/rápidas)
+  L: b+c+d+e (4 condiciones - MAs medias + precio)
+  M: b+d+e (3 condiciones - MAs medias sin c)
+
+================================================================================
+RANKING CONSOLIDADO
+================================================================================
+
+RANKING por Score Compuesto:
+----------------------------------------------------------------------------------------------------
+#    Comb      Score  Señales   Pips Tot     %Alc    Pips/Tr Condiciones
+----------------------------------------------------------------------------------------------------
+1    G         32.15      635      12858     46.1      43.88 b+c+d (3 condiciones - MAs medias)
+2    E         32.03      596      12192     46.8      43.70 a+d+e (3 condiciones - MAs lentas + precio)
+3    I         31.85      583      11882     46.3      44.01 a+b (2 condiciones - Solo MAs lentas)
+4    L         31.84      635      12651     45.4      43.93 b+c+d+e (4 condiciones - MAs medias + precio)
+5    J         31.80      693      13440     44.2      43.92 d+e (2 condiciones - MAs rápidas)
+6    K         31.76      674      13146     44.8      43.53 c+d+e (3 condiciones - MAs medias/rápidas)
+7    C         31.69      572      11617     46.0      44.17 a+b+d (3 condiciones - MAs lentas sin c)
+8    H         31.55      587      11748     45.7      43.84 a+c+e (3 condiciones - MAs lentas extremas)
+9    D         31.51      578      11588     45.7      43.89 a+c+d (3 condiciones - MAs lentas sin b)
+10   B         31.45      574      11498     45.3      44.22 a+b+c (3 condiciones - MAs lentas)
+11   A         31.34      566      11303     45.2      44.15 a+b+c+d (4 condiciones - MAs lentas y medias)
+12   M         31.21      645      12362     43.6      43.99 b+d+e (3 condiciones - MAs medias sin c)
+13   F         31.05      565      11108     44.6      44.08 a+b+c+d+e (5 condiciones - TODAS)
+
+================================================================================
+RECOMENDACIÓN BASADA EN DATOS
+================================================================================
+
+TOP 3 COMBINACIONES PARA M5:
+
+1. COMBINACIÓN G - b+c+d (3 condiciones - MAs medias)
+   Señales/año estimadas: 1270
+   Pips totales: 12858
+   % Alcance P40: 46.1%
+   Pips promedio/trade: 43.88
+   Potencial máximo: 46.60 pips (media)
+   Drawdown promedio: -45.30 pips
+
+2. COMBINACIÓN E - a+d+e (3 condiciones - MAs lentas + precio)
+   Señales/año estimadas: 1192
+   Pips totales: 12192
+   % Alcance P40: 46.8%
+   Pips promedio/trade: 43.70
+   Potencial máximo: 45.19 pips (media)
+   Drawdown promedio: -46.46 pips
+
+3. COMBINACIÓN I - a+b (2 condiciones - Solo MAs lentas)
+   Señales/año estimadas: 1166
+   Pips totales: 11882
+   % Alcance P40: 46.3%
+   Pips promedio/trade: 44.01
+   Potencial máximo: 45.10 pips (media)
+   Drawdown promedio: -45.01 pips
+
+================================================================================
+EXPORTANDO RESULTADOS...
+================================================================================
+
+✓ Archivo exportado: Analisis_Condiciones_Entrada_M5.csv
+
+================================================================================
+ANÁLISIS COMPLETADO
+================================================================================
