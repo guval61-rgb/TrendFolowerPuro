@@ -1,0 +1,136 @@
+***************************************************
+ARCHIVO 1
+***************************************************
+
+
+DIAGNÓSTICO: TIMING DE SALIDAS - BUY vs SELL
+================================================================================
+
+Leyendo archivo: MAs_Resumen_EURUSD_M5_2023_06_15.csv
+C:\TradingAnalysis\diagnostico_timing_cruces.py:25: DtypeWarning: Columns (347,351) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(ARCHIVO, encoding='latin-1')
+✓ Archivo leído con encoding Latin-1
+
+Total trades: 7903
+Trades Combinación K: 674
+  BUY: 338
+  SELL: 336
+
+================================================================================
+ANÁLISIS 1: TIMING PROMEDIO (BARS) DE ACTIVACIÓN
+================================================================================
+
+TIMING: ¿Cuándo se activa cada salida? (ordenado por diferencia BUY-SELL)
+----------------------------------------------------------------------------------------------------
+Salida          Tipo              BUY Bars  SELL Bars      Dif   BUY Pips  SELL Pips
+----------------------------------------------------------------------------------------------------
+Cruce_l         Cruce Nuevo           46.9       38.6     -8.3       0.52      -2.31
+Combo_5         Combo                 64.2       56.7     -7.5      -0.75      -2.69
+Cruce_b         Cruce Original        38.9       31.8     -7.2      -0.27      -2.43
+Combo_2         Combo                 59.5       53.5     -6.0      -1.40      -2.85
+Cruce_i         Cruce Nuevo           40.2       34.8     -5.4       0.32      -1.47
+Cruce_a         Cruce Original        69.0       64.8     -4.1      -1.38      -2.62
+Combo_1         Combo                 93.0       89.2     -3.7      -2.00      -4.25
+Cruce_h         Cruce Nuevo           29.8       26.2     -3.7      -0.38      -0.92
+Cruce_k         Cruce Nuevo           27.4       23.9     -3.5      -0.86      -0.89
+Cruce_j         Cruce Nuevo           29.7       26.2     -3.4       0.24      -0.97
+Cruce_c         Cruce Original        36.6       34.1     -2.5      -0.51      -1.43
+Cruce_g         Cruce Nuevo           24.4       22.4     -2.0      -0.24      -1.03
+Cruce_d         Cruce Original        18.3       17.5     -0.8      -0.59      -0.50
+Cruce_e         Cruce Original         5.0        4.8     -0.3       0.05      -0.33
+Cruce_f         Cruce Nuevo           12.1       12.5      0.4      -0.16      -0.57
+P30             Pips Fijo            182.2      187.9      5.7      33.71      34.48
+P40             Pips Fijo            208.8      218.8     10.0      43.45      43.61
+
+================================================================================
+ANÁLISIS 2: PIPS CUANDO SE ACTIVAN LOS CRUCES
+================================================================================
+
+CRUCES NUEVOS - ¿Se activan en pérdida en SELL?
+--------------------------------------------------------------------------------
+Cruce_f      BUY:   -0.16 pips ✗ PÉRDIDA        |  SELL:   -0.57 pips ✗ PÉRDIDA
+Cruce_g      BUY:   -0.24 pips ✗ PÉRDIDA        |  SELL:   -1.03 pips ✗ PÉRDIDA
+Cruce_h      BUY:   -0.38 pips ✗ PÉRDIDA        |  SELL:   -0.92 pips ✗ PÉRDIDA
+Cruce_i      BUY:    0.32 pips ✓ GANANCIA       |  SELL:   -1.47 pips ✗ PÉRDIDA
+Cruce_j      BUY:    0.24 pips ✓ GANANCIA       |  SELL:   -0.97 pips ✗ PÉRDIDA
+Cruce_k      BUY:   -0.86 pips ✗ PÉRDIDA        |  SELL:   -0.89 pips ✗ PÉRDIDA
+Cruce_l      BUY:    0.52 pips ✓ GANANCIA       |  SELL:   -2.31 pips ✗ PÉRDIDA
+
+================================================================================
+ANÁLISIS 3: COMPARACIÓN P40 vs CRUCES
+================================================================================
+
+P40 se alcanza en promedio:
+  BUY:  208.8 bars
+  SELL: 218.8 bars
+
+¿Los cruces se activan DESPUÉS de P40?
+--------------------------------------------------------------------------------
+Cruce_f
+  BUY:    12.1 bars (ANTES de P40, -196.7 bars)
+  SELL:   12.5 bars (ANTES de P40, -206.3 bars)
+Cruce_g
+  BUY:    24.4 bars (ANTES de P40, -184.4 bars)
+  SELL:   22.4 bars (ANTES de P40, -196.4 bars)
+Cruce_h
+  BUY:    29.8 bars (ANTES de P40, -178.9 bars)
+  SELL:   26.2 bars (ANTES de P40, -192.6 bars)
+Cruce_i
+  BUY:    40.2 bars (ANTES de P40, -168.5 bars)
+  SELL:   34.8 bars (ANTES de P40, -184.0 bars)
+Cruce_j
+  BUY:    29.7 bars (ANTES de P40, -179.1 bars)
+  SELL:   26.2 bars (ANTES de P40, -192.5 bars)
+Cruce_k
+  BUY:    27.4 bars (ANTES de P40, -181.3 bars)
+  SELL:   23.9 bars (ANTES de P40, -194.8 bars)
+Cruce_l
+  BUY:    46.9 bars (ANTES de P40, -161.9 bars)
+  SELL:   38.6 bars (ANTES de P40, -180.2 bars)
+
+================================================================================
+CONCLUSIONES
+================================================================================
+
+1. PIPS PROMEDIO cuando se activan cruces nuevos:
+   BUY:  -0.08 pips
+   SELL: -1.17 pips
+
+2. CRUCES NUEVOS que se activan en PÉRDIDA en SELL: 7/7
+
+3. TIMING PROMEDIO de activación:
+   Cruces nuevos BUY:  30.1 bars
+   Cruces nuevos SELL: 26.4 bars
+   P40 BUY:  208.8 bars
+   P40 SELL: 218.8 bars
+
+================================================================================
+EXPORTANDO RESULTADOS...
+================================================================================
+
+✓ Archivo exportado: Diagnostico_Timing_Salidas.csv
+
+
+
+***************************************************
+ARCHIVO 2
+***************************************************
+Diagnostico_Timing_Salidas.csv
+Salida,Categoria,BUY_Bars,SELL_Bars,Diferencia_Bars,BUY_Pips,SELL_Pips,BUY_Count,SELL_Count
+P40,Pips Fijo,208.76315789473685,218.77333333333334,10.010175438596491,43.45131578947368,43.608000000000004,152,150
+P30,Pips Fijo,182.22222222222223,187.92090395480227,5.698681732580042,33.70634920634921,34.484180790960444,189,177
+Cruce_a,Cruce Original,68.97590361445783,64.83383685800604,-4.142066756451797,-1.3828313253012046,-2.623867069486405,332,331
+Cruce_b,Cruce Original,38.94970414201183,31.758928571428573,-7.190775570583259,-0.2695266272189349,-2.425297619047619,338,336
+Cruce_c,Cruce Original,36.594674556213015,34.11309523809524,-2.481579318117774,-0.5050295857988167,-1.4312500000000004,338,336
+Cruce_d,Cruce Original,18.337278106508876,17.547619047619047,-0.7896590588898285,-0.5914201183431953,-0.4976190476190477,338,336
+Cruce_e,Cruce Original,5.044378698224852,4.755952380952381,-0.2884263172724708,0.04852071005917155,-0.3279761904761905,338,336
+Cruce_f,Cruce Nuevo,12.068047337278106,12.473214285714286,0.4051669484361806,-0.15650887573964506,-0.5744047619047622,338,336
+Cruce_g,Cruce Nuevo,24.357988165680474,22.395833333333332,-1.9621548323471423,-0.23964497041420105,-1.0330357142857143,338,336
+Cruce_h,Cruce Nuevo,29.83431952662722,26.172619047619047,-3.6617004790081715,-0.3837278106508875,-0.9187499999999998,338,336
+Cruce_i,Cruce Nuevo,40.239644970414204,34.79761904761905,-5.442025922795153,0.32159763313609496,-1.4735119047619047,338,336
+Cruce_j,Cruce Nuevo,29.659763313609467,26.238095238095237,-3.42166807551423,0.2366863905325442,-0.9654761904761904,338,336
+Cruce_k,Cruce Nuevo,27.41715976331361,23.94345238095238,-3.47370738236123,-0.8582840236686391,-0.8928571428571429,338,336
+Cruce_l,Cruce Nuevo,46.89910979228487,38.583333333333336,-8.315776458951532,0.5154302670623145,-2.314583333333333,337,336
+Combo_1,Combo,92.95426829268293,89.21884498480243,-3.7354233078804953,-2.002439024390244,-4.246504559270517,328,329
+Combo_2,Combo,59.455621301775146,53.48511904761905,-5.970502254156095,-1.3997041420118348,-2.8467261904761907,338,336
+Combo_5,Combo,64.17210682492582,56.70238095238095,-7.4697258725448705,-0.7492581602373891,-2.6851190476190476,337,336
