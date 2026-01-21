@@ -1,7 +1,7 @@
 ================================================================================
 ANÁLISIS SISTEMA ESCALONADO - CORREGIDO
 ================================================================================
-C:\TradingAnalysis\analisis_escalonado_corregido.py:22: DtypeWarning: Columns (347,351) have mixed types. Specify dtype option on import or set low_memory=False.
+C:\TradingAnalysis\analisis_escalonado_corregidoM5.py:22: DtypeWarning: Columns (347,351) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv(ARCHIVO, encoding='latin-1')
 
 Total trades: 1328
@@ -130,7 +130,6 @@ SELL - Top 3:
 
 ================================================================================
 ANÁLISIS COMPLETADO
-================================================================================
 
 
 
