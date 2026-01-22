@@ -1,0 +1,144 @@
+---------------------------------------------------------------------------------------------------------
+1.- -----------------------------------------------------------------------------------------------------
+Strategy Tester Report
+FollowerPuro_M5_v1.01_SL30_Normal  P10 BE 5
+ICMarketsSC-Demo04 (Build 1441)
+Símbolo EURUSD (Euro vs US Dollar)
+Período 5 minutos (M5) 2023.06.15 00:00 - 2025.12.12 23:55 (2023.06.15 - 2025.12.15)
+Modelo Cada tick (el método más preciso basado en todos los períodos menores disponibles)
+Parámetros
+MagicNumber=12345; Lote_Fijo=0.01; SL_Pips=30; Slippage=3; Max_Trades=1; Trades_Progresivos=true; BE_Minimo_Para_Nuevo=5;
+Max_Trades_Absoluto=0; Temporizador_Segundos=180; TS1_Nivel=10; TS1_Valor=5; TS2_Nivel=20; TS2_Valor=12; TS3_Nivel=35; TS3_Valor=25;
+Barras en el historial 177918 Ticks modelados 31676661 Calidad del modelado n/a
+Errores de
+desalineación de
+gráficos
+476
+Depósito inicial 200.00 Spread 2
+Beneficio neto total -199.46 Beneficio bruto 517.50 Pérdida bruta -716.96
+Factor de beneficio 0.72 Beneficio esperado -0.26
+Drawdown absoluto 199.46 Drawdown máximo 273.08 (99.80%) Drawdown relativo 99.80% (273.08)
+Total de transacciones 776 Posiciones cortas (% ganadoras) 380 (69.74%) Posiciones largas (% ganadoras) 396 (69.44%)
+Transacciones rentables (% del total) 540 (69.59%) Transacciones no rentables (% del total) 236 (30.41%)
+Mayor transacción rentable 35.19 transacción no rentable -3.32
+Media transacción rentable 0.96 transacción no rentable -3.04
+Número máximo ganancias consecutivas (beneficio en dinero) 15 (13.41) pérdidas consecutivas (pérdidas en dinero) 4 (-12.36)
+Máx. beneficio consecutivo (número de ganancias) 51.90 (2) pérdidas consecutivas (número de pérdidas) -12.36 (4)
+Promedio ganancias consecutivas 3 pérdidas consecutivas 1
+
+
+
+---------------------------------------------------------------------------------------------------------
+2.- -----------------------------------------------------------------------------------------------------
+Strategy Tester Report
+FollowerPuro_M5_v1.01_SL60_Espaciado P20 BE 10
+ICMarketsSC-Demo04 (Build 1441)
+Símbolo EURUSD (Euro vs US Dollar)
+Período 5 minutos (M5) 2023.06.15 00:00 - 2025.12.12 23:55 (2023.06.15 - 2025.12.15)
+Modelo Cada tick (el método más preciso basado en todos los períodos menores disponibles)
+Parámetros
+MagicNumber=12345; Lote_Fijo=0.01; SL_Pips=60; Slippage=3; Max_Trades=1; Trades_Progresivos=true; BE_Minimo_Para_Nuevo=10;
+Max_Trades_Absoluto=0; Temporizador_Segundos=180; TS1_Nivel=20; TS1_Valor=10; TS2_Nivel=40; TS2_Valor=25; TS3_Nivel=60; TS3_Valor=50;
+Barras en el historial 177918 Ticks modelados 31676661 Calidad del modelado n/a
+Errores de
+desalineación de
+gráficos
+476
+Depósito inicial 200.00 Spread 2
+Beneficio neto total -199.46 Beneficio bruto 527.79 Pérdida bruta -727.25
+Factor de beneficio 0.73 Beneficio esperado -0.49
+Drawdown absoluto 199.46 Drawdown máximo 254.71 (99.79%) Drawdown relativo 99.79% (254.71)
+Total de transacciones 408 Posiciones cortas (% ganadoras) 203 (69.95%) Posiciones largas (% ganadoras) 205 (71.22%)
+Transacciones rentables (% del total) 288 (70.59%) Transacciones no rentables (% del total) 120 (29.41%)
+Mayor transacción rentable 10.61 transacción no rentable -6.66
+Media transacción rentable 1.83 transacción no rentable -6.06
+Número máximo ganancias consecutivas (beneficio en dinero) 13 (20.66) pérdidas consecutivas (pérdidas en dinero) 4 (-24.31)
+Máx. beneficio consecutivo (número de ganancias) 28.25 (10) pérdidas consecutivas (número de pérdidas) -24.31 (4)
+Promedio ganancias consecutivas 3 pérdidas consecutivas 1
+
+
+
+---------------------------------------------------------------------------------------------------------
+3.- -----------------------------------------------------------------------------------------------------
+Strategy Tester Report
+FollowerPuro_M5_v1.02_SL30_Agresivo P10 BE 2
+ICMarketsSC-Demo04 (Build 1441)
+Símbolo EURUSD (Euro vs US Dollar)
+Período 5 minutos (M5) 2023.06.15 00:00 - 2025.12.12 23:55 (2023.06.15 - 2025.12.15)
+Modelo Cada tick (el método más preciso basado en todos los períodos menores disponibles)
+Parámetros
+MagicNumber=12345; Lote_Fijo=0.01; SL_Pips=30; Slippage=3; Max_Trades=1; Trades_Progresivos=true; BE_Minimo_Para_Nuevo=2;
+Max_Trades_Absoluto=0; Temporizador_Segundos=180; TS1_Nivel=10; TS1_Valor=2; TS2_Nivel=20; TS2_Valor=8; TS3_Nivel=35; TS3_Valor=20;
+Barras en el historial 177918 Ticks modelados 31676661 Calidad del modelado n/a
+Errores de
+desalineación de
+gráficos
+476
+Depósito inicial 200.00 Spread 2
+Beneficio neto total -199.47 Beneficio bruto 389.90 Pérdida bruta -589.37
+Factor de beneficio 0.66 Beneficio esperado -0.32
+Drawdown absoluto 199.47 Drawdown máximo 274.84 (99.81%) Drawdown relativo 99.81% (274.84)
+Total de transacciones 623 Posiciones cortas (% ganadoras) 302 (68.87%) Posiciones largas (% ganadoras) 321 (67.29%)
+Transacciones rentables (% del total) 424 (68.06%) Transacciones no rentables (% del total) 199 (31.94%)
+Mayor transacción rentable 42.04 transacción no rentable -3.32
+Media transacción rentable 0.92 transacción no rentable -2.96
+Número máximo ganancias consecutivas (beneficio en dinero) 11 (8.25) pérdidas consecutivas (pérdidas en dinero) 5 (-12.48)
+Máx. beneficio consecutivo (número de ganancias) 106.65 (6) pérdidas consecutivas (número de pérdidas) -12.48 (5)
+Promedio ganancias consecutivas 3 pérdidas consecutivas 1
+
+
+
+
+---------------------------------------------------------------------------------------------------------
+4.- -----------------------------------------------------------------------------------------------------
+Strategy Tester Report
+FollowerPuro_M5_v1.02_SL30_Agresivo P20 BE 5
+ICMarketsSC-Demo04 (Build 1441)
+
+Símbolo	EURUSD (Euro vs US Dollar)
+Período	5 minutos (M5) 2023.06.15 00:00 - 2025.12.12 23:55 (2023.06.15 - 2025.12.15)
+Modelo	Cada tick (el método más preciso basado en todos los períodos menores disponibles)
+Parámetros	MagicNumber=12345; Lote_Fijo=0.01; SL_Pips=30; Slippage=3; Max_Trades=1; Trades_Progresivos=true; BE_Minimo_Para_Nuevo=2; Max_Trades_Absoluto=0; Temporizador_Segundos=180; TS1_Nivel=20; TS1_Valor=5; TS2_Nivel=20; TS2_Valor=8; TS3_Nivel=35; TS3_Valor=20;
+Barras en el historial	177918	Ticks modelados	31676661	Calidad del modelado	n/a
+Errores de desalineación de gráficos	476				
+Depósito inicial	200.00			Spread	2
+Beneficio neto total	-198.40	Beneficio bruto	365.50	Pérdida bruta	-563.89
+Factor de beneficio	0.65	Beneficio esperado	-0.45		
+Drawdown absoluto	198.60	Drawdown máximo	284.25 (99.51%)	Drawdown relativo	99.51% (284.25)
+Total de transacciones	437	Posiciones cortas (% ganadoras)	216 (57.41%)	Posiciones largas (% ganadoras)	221 (57.92%)
+Transacciones rentables (% del total)	252 (57.67%)	Transacciones no rentables (% del total)	185 (42.33%)
+Mayor	transacción rentable	35.59	transacción no rentable	-3.32
+Media	transacción rentable	1.45	transacción no rentable	-3.05
+Número máximo	ganancias consecutivas (beneficio en dinero)	8 (110.42)	pérdidas consecutivas (pérdidas en dinero)	5 (-15.49)
+Máx.	beneficio consecutivo (número de ganancias)	110.42 (8)	pérdidas consecutivas (número de pérdidas)	-15.49 (5)
+Promedio	ganancias consecutivas	2	pérdidas consecutivas	2
+
+
+
+---------------------------------------------------------------------------------------------------------
+5.- -----------------------------------------------------------------------------------------------------
+Strategy Tester Report
+FollowerPuro_M5_v1.02_SL60_Agresivo P 20 BE 5
+ICMarketsSC-Demo04 (Build 1441)
+Símbolo EURUSD (Euro vs US Dollar)
+Período 5 minutos (M5) 2023.06.15 00:00 - 2025.12.12 23:55 (2023.06.15 - 2025.12.15)
+Modelo Cada tick (el método más preciso basado en todos los períodos menores disponibles)
+Parámetros
+MagicNumber=12345; Lote_Fijo=0.01; SL_Pips=60; Slippage=3; Max_Trades=1; Trades_Progresivos=true; BE_Minimo_Para_Nuevo=2;
+Max_Trades_Absoluto=0; Temporizador_Segundos=180; TS1_Nivel=20; TS1_Valor=5; TS2_Nivel=20; TS2_Valor=8; TS3_Nivel=35; TS3_Valor=20;
+Barras en el historial 177918 Ticks modelados 31676661 Calidad del modelado n/a
+Errores de
+desalineación de
+gráficos
+476
+Depósito inicial 200.00 Spread 2
+Beneficio neto total -199.45 Beneficio bruto 248.01 Pérdida bruta -447.47
+Factor de beneficio 0.55 Beneficio esperado -0.76
+Drawdown absoluto 199.45 Drawdown máximo 296.15 (99.82%) Drawdown relativo 99.82% (296.15)
+Total de transacciones 261 Posiciones cortas (% ganadoras) 131 (71.76%) Posiciones largas (% ganadoras) 130 (70.00%)
+Transacciones rentables (% del total) 185 (70.88%) Transacciones no rentables (% del total) 76 (29.12%)
+Mayor transacción rentable 32.04 transacción no rentable -6.49
+Media transacción rentable 1.34 transacción no rentable -5.89
+Número máximo ganancias consecutivas (beneficio en dinero) 11 (9.86) pérdidas consecutivas (pérdidas en dinero) 4 (-24.31)
+Máx. beneficio consecutivo (número de ganancias) 47.27 (5) pérdidas consecutivas (número de pérdidas) -24.31 (4)
+Promedio ganancias consecutivas 3 pérdidas consecutivas 1
