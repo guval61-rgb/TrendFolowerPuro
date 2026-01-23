@@ -1,0 +1,228 @@
+//+------------------------------------------------------------------+
+//|                                         FollowerPuro_M5_v1.0.mq4 |
+//|                                  Sistema Trend Following Puro M5 |
+//+------------------------------------------------------------------+
+#property copyright "FollowerPuro M5"
+#property version   "1.00"
+#property strict
+
+//+------------------------------------------------------------------+
+//| INPUTS                                                            |
+//+------------------------------------------------------------------+
+input int MagicNumber = 12345;
+input double Lote_Fijo = 0.01;
+input int SL_Pips = 60;
+input int Slippage = 3;
+input int Max_Trades = 1;
+input bool Trades_Progresivos = true;
+input int BE_Minimo_Para_Nuevo = 7;
+input int Max_Trades_Absoluto = 0;
+input int Temporizador_Segundos = 180;
+input int TS1_Nivel = 10;
+input int TS1_Valor = 7;
+input int TS2_Nivel = 30;
+input int TS2_Valor = 20;
+input int TS3_Nivel = 50;
+input int TS3_Valor = 45;
+
+//+------------------------------------------------------------------+
+//| GLOBALES                                                          |
+//+------------------------------------------------------------------+
+datetime g_ultima_barra = 0;
+datetime g_ultima_senal = 0;
+double g_point_factor = 1.0;  // Factor corrección Point (10 para 5 dígitos, 1 para 4)
+
+struct TradeTS {
+   int ticket;
+   double precio_entrada;
+   int tipo;
+   bool ts1, ts2, ts3;
+};
+TradeTS g_trades[];
+
+//+------------------------------------------------------------------+
+//| Init                                                              |
+//+------------------------------------------------------------------+
+int OnInit() {
+   // Detectar tipo de broker (4 o 5 dígitos)
+   if(Digits == 5 || Digits == 3) {
+      g_point_factor = 10.0;
+   } else {
+      g_point_factor = 1.0;
+   }
+   
+   Print("FollowerPuro M5 v1.0 - Iniciado");
+   Print("Dígitos: ", Digits, " | Factor Point: ", g_point_factor);
+   Print("SL: ", SL_Pips, " pips | Max Trades: ", Max_Trades);
+   
+   ArrayResize(g_trades, 0);
+   return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Tick                                                              |
+//+------------------------------------------------------------------+
+void OnTick() {
+   if(Time[0] == g_ultima_barra) return;
+   g_ultima_barra = Time[0];
+   
+   ActualizarTrades();
+   GestionarTS();
+   
+   if(PuedeAbrir()) EvaluarSenales();
+}
+
+//+------------------------------------------------------------------+
+//| Actualizar trades                                                 |
+//+------------------------------------------------------------------+
+void ActualizarTrades() {
+   for(int i = ArraySize(g_trades) - 1; i >= 0; i--) {
+      if(!OrderSelect(g_trades[i].ticket, SELECT_BY_TICKET) || OrderCloseTime() > 0) {
+         // Eliminar trade cerrado
+         for(int j = i; j < ArraySize(g_trades) - 1; j++) {
+            g_trades[j] = g_trades[j + 1];
+         }
+         ArrayResize(g_trades, ArraySize(g_trades) - 1);
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Gestionar TS                                                      |
+//+------------------------------------------------------------------+
+void GestionarTS() {
+   for(int i = 0; i < ArraySize(g_trades); i++) {
+      if(!OrderSelect(g_trades[i].ticket, SELECT_BY_TICKET)) continue;
+      
+      double precio_actual = (g_trades[i].tipo == OP_BUY) ? Bid : Ask;
+      double pips = (g_trades[i].tipo == OP_BUY) ? 
+                    (precio_actual - g_trades[i].precio_entrada) / (Point * g_point_factor) :
+                    (g_trades[i].precio_entrada - precio_actual) / (Point * g_point_factor);
+      
+      if(!g_trades[i].ts3 && pips >= TS3_Nivel) {
+         double sl = g_trades[i].precio_entrada + (g_trades[i].tipo == OP_BUY ? 1 : -1) * TS3_Valor * Point * g_point_factor;
+         if(OrderModify(OrderTicket(), OrderOpenPrice(), NormalizeDouble(sl, Digits), 0, 0)) {
+            g_trades[i].ts3 = true;
+            Print("TS3: #", g_trades[i].ticket);
+         }
+      }
+      else if(!g_trades[i].ts2 && pips >= TS2_Nivel) {
+         double sl = g_trades[i].precio_entrada + (g_trades[i].tipo == OP_BUY ? 1 : -1) * TS2_Valor * Point * g_point_factor;
+         if(OrderModify(OrderTicket(), OrderOpenPrice(), NormalizeDouble(sl, Digits), 0, 0)) {
+            g_trades[i].ts2 = true;
+            Print("TS2: #", g_trades[i].ticket);
+         }
+      }
+      else if(!g_trades[i].ts1 && pips >= TS1_Nivel) {
+         double sl = g_trades[i].precio_entrada + (g_trades[i].tipo == OP_BUY ? 1 : -1) * TS1_Valor * Point * g_point_factor;
+         if(OrderModify(OrderTicket(), OrderOpenPrice(), NormalizeDouble(sl, Digits), 0, 0)) {
+            g_trades[i].ts1 = true;
+            Print("TS1: #", g_trades[i].ticket);
+         }
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Puede abrir                                                       |
+//+------------------------------------------------------------------+
+bool PuedeAbrir() {
+   int abiertos = ArraySize(g_trades);
+   
+   if(Max_Trades_Absoluto > 0 && abiertos >= Max_Trades_Absoluto) return false;
+   
+   if(!Trades_Progresivos) return abiertos < Max_Trades;
+   
+   int con_be = 0;
+   for(int i = 0; i < abiertos; i++) {
+      if(!OrderSelect(g_trades[i].ticket, SELECT_BY_TICKET)) continue;
+      double sl = OrderStopLoss();
+      if(g_trades[i].tipo == OP_BUY) {
+         if(sl >= g_trades[i].precio_entrada + BE_Minimo_Para_Nuevo * Point * g_point_factor) con_be++;
+      } else {
+         if(sl <= g_trades[i].precio_entrada - BE_Minimo_Para_Nuevo * Point * g_point_factor && sl > 0) con_be++;
+      }
+   }
+   
+   return abiertos < (1 + con_be);
+}
+
+//+------------------------------------------------------------------+
+//| Evaluar señales                                                   |
+//+------------------------------------------------------------------+
+void EvaluarSenales() {
+   double l200=iMA(NULL,0,200,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l220=iMA(NULL,0,220,0,MODE_LWMA,PRICE_OPEN,1);
+   double l100=iMA(NULL,0,100,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l105=iMA(NULL,0,105,0,MODE_LWMA,PRICE_OPEN,1);
+   double l50=iMA(NULL,0,50,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l53=iMA(NULL,0,53,0,MODE_LWMA,PRICE_OPEN,1);
+   double l20=iMA(NULL,0,20,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l22=iMA(NULL,0,22,0,MODE_LWMA,PRICE_OPEN,1);
+   double s5=iMA(NULL,0,5,0,MODE_SMA,PRICE_CLOSE,1);
+   
+   // Validar que MAs se calcularon correctamente
+   if(l200==0 || l220==0 || l100==0 || l105==0 || l50==0 || l53==0 || l20==0 || l22==0 || s5==0) {
+      return;  // Error calculando MAs, esperar próxima barra
+   }
+   
+   bool a=l200>l220, b=l100>l105, c=l50>l53, d=l20>l22, e=Close[1]>s5;
+   
+   string combos[]={"A","B","C","D","E","F","G","H","I","J","K","L","M"};
+   
+   for(int i=0; i<13; i++) {
+      bool buy=false, sell=false;
+      string s=combos[i];
+      
+      if(s=="A"){buy=a&&b&&c&&d; sell=!a&&!b&&!c&&!d;}
+      else if(s=="B"){buy=a&&b&&c; sell=!a&&!b&&!c;}
+      else if(s=="C"){buy=a&&b&&d; sell=!a&&!b&&!d;}
+      else if(s=="D"){buy=a&&c&&d; sell=!a&&!c&&!d;}
+      else if(s=="E"){buy=a&&d&&e; sell=!a&&!d&&!e;}
+      else if(s=="F"){buy=a&&b&&c&&d&&e; sell=!a&&!b&&!c&&!d&&!e;}
+      else if(s=="G"){buy=b&&c&&d; sell=!b&&!c&&!d;}
+      else if(s=="H"){buy=a&&c&&e; sell=!a&&!c&&!e;}
+      else if(s=="I"){buy=a&&b; sell=!a&&!b;}
+      else if(s=="J"){buy=d&&e; sell=!d&&!e;}
+      else if(s=="K"){buy=c&&d&&e; sell=!c&&!d&&!e;}
+      else if(s=="L"){buy=b&&c&&d&&e; sell=!b&&!c&&!d&&!e;}
+      else if(s=="M"){buy=b&&d&&e; sell=!b&&!d&&!e;}
+      
+      if(buy || sell) {
+         if(TimeCurrent()-g_ultima_senal < Temporizador_Segundos) continue;
+         if(Abrir(buy?OP_BUY:OP_SELL, s)) {
+            g_ultima_senal = TimeCurrent();
+            return;
+         }
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Abrir                                                             |
+//+------------------------------------------------------------------+
+bool Abrir(int tipo, string combo) {
+   double precio = (tipo==OP_BUY) ? Ask : Bid;
+   double sl = precio + (tipo==OP_BUY?-1:1) * SL_Pips * Point * g_point_factor;
+   sl = NormalizeDouble(sl, Digits);
+   
+   int ticket = OrderSend(Symbol(), tipo, Lote_Fijo, precio, Slippage, sl, 0, 
+                          "FP_" + combo, MagicNumber, 0);
+   
+   if(ticket > 0) {
+      int idx = ArraySize(g_trades);
+      ArrayResize(g_trades, idx + 1);
+      g_trades[idx].ticket = ticket;
+      g_trades[idx].precio_entrada = precio;
+      g_trades[idx].tipo = tipo;
+      g_trades[idx].ts1 = false;
+      g_trades[idx].ts2 = false;
+      g_trades[idx].ts3 = false;
+      Print("Trade ", combo, " #", ticket);
+      return true;
+   }
+   
+   Print("ERROR Trade: ", GetLastError());
+   return false;
+}
+//+------------------------------------------------------------------+
