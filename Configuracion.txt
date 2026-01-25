@@ -1,0 +1,207 @@
+## 📋 CONFIGURACIÓN M5 - FINAL COMPLETA Para FollowerPuro_TDreal_v1
+Basado en EA_MAs_ResearchExt_v1.06
+
+CONFIGURACIÓN MEDIAS MÓVILES (9)
+Combinaciones de entrada (13)
+Combinaciones de medias moviles para salidas(13 totales)
+SALIDAS PIPS FIJOS (21)
+SALIDAS PIPS FIJOS (21)
+SALIDAS POR RETROCESO (7)
+SALIDAS CRUCES INVERSOS (12)
+SALIDAS COMBINACIÓN DE CRUCES (6 COMBOS) 
+Salidas Timeouts (17)
+----------------------------------------------
+1. CONFIGURACIÓN BÁSICA: 
+---------------------------------------------- 
+TimeFrame: M5 (predeterminado, configurable)
+Lote: 0.01 (fijo)// Predeterminado 1, configurable
+Slippage: 3
+Magic Number: 12345 (configurable)
+Max_Trades: 1 (configurable)
+Trades_Progresivos: false (configurable)
+Max_Trades_Absoluto: 0 = sin límite (configurable) 
+
+----------------------------------------------
+2. GESTIÓN DE RIESGO: 
+---------------------------------------------- 
+Riesgo: 1% predeterminado (configurable)
+Protección_Margen: Activa siempre
+Max_Trades = 1;  // Predeterminado 1, configurable
+Trades_Progresivos = false;  // Habilitar expansión progresiva
+BE_Minimo_Para_Nuevo = 7;  // BE+7 requerido para habilitar nuevo trade
+input int 
+// Lógica:
+// 1. Si Trades_Progresivos = false → Siempre Max_Trades fijo
+// 2. Si Trades_Progresivos = true:
+//    - Verifica trades abiertos con SL >= BE+7
+//    - Cada trade confirmado en BE+7 → +1 slot disponible permite agregar otro trade
+//    - Límite: Max_Trades_Absoluto (0 = solo margen)
+//    - Protección margen siempre activa
+----------------------------------------------
+3. CONFIGURACIÓN MEDIAS MÓVILES (9)
+----------------------------------------------------------- 
+   double l200=iMA(NULL,0,200,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l220=iMA(NULL,0,220,0,MODE_LWMA,PRICE_OPEN,1);
+   double l100=iMA(NULL,0,100,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l105=iMA(NULL,0,105,0,MODE_LWMA,PRICE_OPEN,1);
+   double l50=iMA(NULL,0,50,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l53=iMA(NULL,0,53,0,MODE_LWMA,PRICE_OPEN,1);
+   double l20=iMA(NULL,0,20,0,MODE_LWMA,PRICE_CLOSE,1);
+   double l22=iMA(NULL,0,22,0,MODE_LWMA,PRICE_OPEN,1);
+   double s5=iMA(NULL,0,5,0,MODE_SMA,PRICE_CLOSE,1);
+   
+----------------------------------------------
+4. COMBINACIONES DE ENTRADAS (13)
+---------------------------------------------- 
+Combinacion_A = a+b+c+d
+Combinacion_B = a+b+c
+Combinacion_C = a+b+d
+Combinacion_D = a+c+d
+Combinacion_E = a+d+e  
+Combinacion_F :  a+b+c+d+e  // Todas las condiciones
+Combinacion_G :  b+c+d      // Solo MAs rápidas
+Combinacion_H :  a+c+e      // MAs extremas
+Combinacion_I   :  a+b         // Solo MAs lentas
+Combinacion_J  :  d+e         // Solo MAs muy rápidas
+Combinacion_k  =  c+d+e 
+Combinacion_L  =  b+c+d+e
+Combinacion_M =  b+d+e 
+
+Donde:
+a) LWMA(200, CLOSE) > LWMA(220, OPEN)
+b) LWMA(100, CLOSE) > LWMA(105, OPEN)
+c) LWMA(50, CLOSE)  > LWMA(53, OPEN)
+d) LWMA(20, CLOSE) > LWMA(22, OPEN)
+e) Close[1]   >  SMA(5, CLOSE)
+
+----------------------------------------------
+5. COMBINACIONES CRUCE MEDIAS MÓVILES (13)
+---------------------------------------------- 
+Combinaciones de medias moviles para salidas Buy. Lo contrario para SELL.
+SALIDAS (13 totales):
+1.	SMA(5) < LWMA(20)
+2.	SMA(5) < LWMA(50)
+3.	SMA(5) < LWMA(100)
+4.	SMA(5) < LWMA(200)
+5.	LWMA(20) < LWMA(50)
+6.	LWMA(20) < LWMA(100)
+7.	LWMA(20) < LWMA(200)
+8.	LWMA(200) < LWMA(220) AND LWMA(20) < LWMA(22)
+9.	LWMA(100) < LWMA(105) AND LWMA(20) < LWMA(22)
+10.	LWMA(50) < LWMA(53) AND LWMA(20) < LWMA(22)
+11.	LWMA(200) < LWMA(220) AND SMA(5) < LWMA(100)  ("tendencia + desaceleración")
+12.	LWMA(100) < LWMA(105) AND SMA(5) < LWMA(50)
+13.	LWMA(50) < LWMA(53) AND SMA(5) < LWMA(20)
+
+----------------------------------------------
+6. SALIDAS PIPS FIJOS (21)
+---------------------------------------------- 
+"===== SALIDAS PIPS FIJOS (21)=====";
+extern bool      Salida_Pips_5 = true;
+extern bool      Salida_Pips_10 = true;
+extern bool      Salida_Pips_15 = true;
+extern bool      Salida_Pips_20 = true;
+extern bool      Salida_Pips_25 = true;
+extern bool      Salida_Pips_30 = true;
+extern bool      Salida_Pips_35 = true;
+extern bool      Salida_Pips_40 = true;
+extern bool      Salida_Pips_45 = true;
+extern bool      Salida_Pips_50 = true;
+extern bool      Salida_Pips_55 = true;
+extern bool      Salida_Pips_60 = true;
+extern bool      Salida_Pips_65 = true;
+extern bool      Salida_Pips_70 = true;
+extern bool      Salida_Pips_75 = true;
+extern bool      Salida_Pips_80 = true;
+extern bool      Salida_Pips_85 = true;
+extern bool      Salida_Pips_90 = true;
+extern bool      Salida_Pips_95 = true;
+extern bool      Salida_Pips_100 = true;
+extern bool      Salida_Pips_Plus100 = true;
+
+----------------------------------------------
+7. SALIDAS RETROCESO (7)
+---------------------------------------------- 
+"===== SALIDAS RETROCESO 7 salidas =====";
+extern bool      Salida_Retroceso_20 = true;
+extern bool      Salida_Retroceso_25 = true;
+extern bool      Salida_Retroceso_30 = true;
+extern bool      Salida_Retroceso_35 = true;
+extern bool      Salida_Retroceso_40 = true;
+extern bool      Salida_Retroceso_45 = true;
+extern bool      Salida_Retroceso_50 = true;
+
+----------------------------------------------
+8. SALIDAS CRUCES INVERSOS (12)
+---------------------------------------------- 
+extern bool      Salida_Cruce_a = true;  // LWMA200 vs LWMA220
+extern bool      Salida_Cruce_b = true;  // LWMA100 vs LWMA105
+extern bool      Salida_Cruce_c = true;  // LWMA50 vs LWMA53
+extern bool      Salida_Cruce_d = true;  // LWMA20 vs LWMA22
+extern bool      Salida_Cruce_e = true;  // Precio vs SMA5
+extern bool      Salida_Cruce_f = true;  // SMA5 vs LWMA20
+extern bool      Salida_Cruce_g = true;  // SMA5 vs LWMA50
+extern bool      Salida_Cruce_h = true;  // SMA5 vs LWMA100
+extern bool      Salida_Cruce_i = true;  // SMA5 vs LWMA200
+extern bool      Salida_Cruce_j = true;  // LWMA20 vs LWMA50
+extern bool      Salida_Cruce_k = true;  // LWMA20 vs LWMA100
+extern bool      Salida_Cruce_l = true;  // LWMA20 vs LWMA200
+----------------------------------------------
+9. SALIDAS COMBINACIÓN DE CRUCES (6)
+----------------------------------------------
+extern bool      Salida_Combo_1 = true;  // Cruce_a AND Cruce_d
+extern bool      Salida_Combo_2 = true;  // Cruce_b AND Cruce_d
+extern bool      Salida_Combo_3 = true;  // Cruce_c AND Cruce_d
+extern bool      Salida_Combo_4 = true;  // Cruce_a AND Cruce_h
+extern bool      Salida_Combo_5 = true;  // Cruce_b AND Cruce_g
+extern bool      Salida_Combo_6 = true;  // Cruce_c AND Cruce_f
+
+----------------------------------------------
+10. SALIDAS TIME OUT (17)
+----------------------------------------------
+    InfoSalida salida_timeout_25_info;
+    InfoSalida salida_timeout_50_info;
+    InfoSalida salida_timeout_75_info;
+    InfoSalida salida_timeout_100_info;
+    InfoSalida salida_timeout_125_info;
+    InfoSalida salida_timeout_150_info;
+    InfoSalida salida_timeout_175_info;
+    InfoSalida salida_timeout_200_info;
+    InfoSalida salida_timeout_225_info;
+    InfoSalida salida_timeout_250_info;
+    InfoSalida salida_timeout_275_info;
+    InfoSalida salida_timeout_300_info;
+    InfoSalida salida_timeout_325_info;
+    InfoSalida salida_timeout_350_info;
+    InfoSalida salida_timeout_400_info;
+    InfoSalida salida_timeout_450_info;
+    InfoSalida salida_timeout_500_info;
+    
+ 
+----------------------------------------------   
+11.  Varios 
+---------------------------------------------- 
+    // MAs al entry y exit
+    double    ma200_entry, ma220_entry, ma100_entry, ma105_entry;
+    double    ma50_entry, ma53_entry, ma20_entry, ma22_entry, ma5_entry;
+    double    ma200_exit, ma220_exit, ma100_exit, ma105_exit;
+    double    ma50_exit, ma53_exit, ma20_exit, ma22_exit, ma5_exit;
+    
+    int       hora_entrada;
+    int       dia_semana_entrada;
+    
+    bool      activo;
+    bool      todas_salidas_cerradas;
+	
+
+"===== CONFIGURACIÓN ====="; ???
+extern double    UmbralMinimoPips = 1.0; //Filtro de ruido para cálculos de retroceso porcentual. 
+                                         //Testearlo como parámetro variable (1.0, 2.0, 3.0, 4.0, 5.0 pips)
+--------------------------------------------------------------------------------------.
+ "===== EXPORT Y LOGGING =====";
+extern bool      ExportarCSV = true;
+extern bool      LoggingDetallado = true;
+extern int       BarsHistoriaMinima = 250;
+extern int       BufferCSV_Lineas = 100;
+--------------------------------------------------------------------------------------.
+
